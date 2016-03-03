@@ -21,25 +21,30 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    MSBubbleView *bView = [[MSBubbleView alloc]initWithFrame:CGRectMake(0, 20, 60, 30)];
+    MSBubbleView *bView = [[MSBubbleView alloc]initWithCustomStyleFrame:CGRectMake(0, 20, 60, 30)];
     bView.badge = @"0";
+    bView.backgroundColor = [UIColor grayColor];
     [self.view addSubview:bView];
     
-    MSBubbleView *bView1 = [[MSBubbleView alloc]initWithFrame:CGRectMake(50, 90, 60, 30)];
+    MSBubbleView *bView1 = [[MSBubbleView alloc]initWithCustomStyleFrame:CGRectMake(50, 90, 60, 30)];
     bView1.badge = @"3";
+    bView1.backgroundColor = [UIColor grayColor];
     [self.view addSubview:bView1];
     self.bubble1 = bView1;
     
-    MSBubbleView *bView2 = [[MSBubbleView alloc]initWithFrame:CGRectMake(50, 130, 60, 30)];
+    MSBubbleView *bView2 = [[MSBubbleView alloc]initWithCustomStyleFrame:CGRectMake(50, 130, 60, 30)];
     bView2.badge = @"12";
+    bView2.backgroundColor = [UIColor grayColor];
     [self.view addSubview:bView2];
     
-    MSBubbleView *bView3 = [[MSBubbleView alloc]initWithFrame:CGRectMake(50, 170, 60, 30)];
+    MSBubbleView *bView3 = [[MSBubbleView alloc]initWithCustomStyleFrame:CGRectMake(50, 170, 60, 30)];
     bView3.badge = @"55";
+    bView3.backgroundColor = [UIColor grayColor];
     [self.view addSubview:bView3];
     
-    MSBubbleView *bView4 = [[MSBubbleView alloc]initWithFrame:CGRectMake(50, 220, 60, 30)];
+    MSBubbleView *bView4 = [[MSBubbleView alloc]initWithFrame:CGRectMake(50, 220, 60, 30) bubbleColor:[UIColor blueColor] titleColor:[UIColor whiteColor] fontSize:20.0 alignMode:(MSBadgeViewAlignCenter)];
     bView4.badge = @"162";
+    bView4.backgroundColor = [UIColor grayColor];
     [self.view addSubview:bView4];
     bView4.badge = @"2";
 

@@ -48,7 +48,6 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong)CAShapeLayer* circleLayer;
 
 @property (nonatomic, assign)CGRect originFrame;    //badgeView在原始视图中的初始位置
-
 @property (nonatomic, assign)CGPoint originCenterInself;  //badgeView的初始中心位置
 @property (nonatomic, assign)CGRect originFrameInself;    //badgeView在self中的初始位置
 
@@ -87,7 +86,7 @@ typedef enum : NSUInteger {
         // 坐标转换
         CGRect beginFrame = [badgeView convertRect:badgeView.frame toView:self];
         _originFrameInself = beginFrame;
-        CGPoint beginPoint = [badgeView convertPoint:badgeView.center toView:self];
+        CGPoint beginPoint = [badgeView.superview convertPoint:badgeView.center toView:self];
         _originCenterInself = beginPoint;
         badgeView.center = _originCenterInself;
         
@@ -167,12 +166,12 @@ typedef enum : NSUInteger {
     [_cutePath addQuadCurveToPoint:_pointB controlPoint:_pointP];
 
     self.shapeLayer.path = [_cutePath CGPath];
-    self.shapeLayer.fillColor = [UIColor redColor].CGColor;
+    self.shapeLayer.fillColor = badgeView.bubbleColor.CGColor;
     
     // 圆路径
     UIBezierPath *circlePath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(_x1, _y1) radius:_r1 startAngle:0 endAngle:M_PI*2 clockwise:YES];
     self.circleLayer.path = circlePath.CGPath;
-    self.circleLayer.fillColor = [UIColor redColor].CGColor;
+    self.circleLayer.fillColor = badgeView.bubbleColor.CGColor;
 
     return MSBubbleViewStateDidConnect;
 }
@@ -201,7 +200,7 @@ typedef enum : NSUInteger {
 }
 
 /**
- *  分离时需要清楚绘制的路径
+ *  分离时需要清除绘制的路径
  */
 - (void)shouldClearShapeLayer {
     [_circleLayer removeFromSuperlayer];

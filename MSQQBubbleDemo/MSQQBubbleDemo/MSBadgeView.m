@@ -22,21 +22,25 @@
 
 - (instancetype)initWithBubbleColor:(UIColor*)bubbleColor titleColor:(UIColor*)titleColor fontSize:(CGFloat)fontSize {
     if (self = [super init]) {
-        _backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
-        _backView.backgroundColor = bubbleColor;
-        [self addSubview:_backView];
+
+        _bubbleColor = bubbleColor;
         
-        _bubbleLabel = [[UILabel alloc]initWithFrame:_backView.bounds];
+        _bubbleLabel = [[UILabel alloc]initWithFrame:CGRectZero];
         [_bubbleLabel setTextAlignment:(NSTextAlignmentCenter)];
         [_bubbleLabel setTextColor:titleColor];
-        _bubbleLabel.font = [UIFont systemFontOfSize:fontSize]; // 字体
+        _bubbleLabel.font = [UIFont systemFontOfSize:fontSize];
         
         // 获取一个字时label高度
         _bubbleLabel.text = @"9";
         [_bubbleLabel sizeToFit];
-        [_backView addSubview:_bubbleLabel];
         _diameter = _bubbleLabel.frame.size.height;
+
+        _backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, _diameter, _diameter)];
+        _backView.backgroundColor = bubbleColor;
         _backView.layer.cornerRadius = _diameter/2;
+        
+        [self addSubview:_backView];
+        [_backView addSubview:_bubbleLabel];
 
     }
     return self;
@@ -47,6 +51,7 @@
 }
 
 - (void)setBadge:(NSString *)badge {
+    
     _badge = [badge copy];
     _bubbleLabel.text = [badge integerValue] > 99 ? @"99+" : badge;
     [_bubbleLabel sizeToFit];

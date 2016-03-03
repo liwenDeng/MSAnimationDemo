@@ -7,6 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+
+
+
 /**
  *  基本的badgeView
  */
