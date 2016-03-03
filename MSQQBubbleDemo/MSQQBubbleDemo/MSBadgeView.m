@@ -12,7 +12,6 @@
 
 // 气泡上显示数字的label
 @property (nonatomic, strong)UILabel *bubbleLabel;
-@property (nonatomic, strong)UIView *backView;
 
 @property (nonatomic, assign)CGFloat diameter; //内容为一个数字时圆的直径
 
@@ -35,12 +34,10 @@
         [_bubbleLabel sizeToFit];
         _diameter = _bubbleLabel.frame.size.height;
 
-        _backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, _diameter, _diameter)];
-        _backView.backgroundColor = bubbleColor;
-        _backView.layer.cornerRadius = _diameter/2;
+        self.layer.backgroundColor = bubbleColor.CGColor;
+        self.layer.cornerRadius = _diameter/2;
         
-        [self addSubview:_backView];
-        [_backView addSubview:_bubbleLabel];
+        [self addSubview:_bubbleLabel];
 
     }
     return self;
@@ -68,11 +65,8 @@
         width = 2.0 * _diameter;
     }
     
-    _backView.frame = CGRectMake(0, 0, width,_diameter);
-    _bubbleLabel.center = _backView.center;
-    
-    //内容自适应
     self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, width, _diameter);
+    _bubbleLabel.center = self.center;
 }
 
 /*

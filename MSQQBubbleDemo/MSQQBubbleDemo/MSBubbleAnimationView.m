@@ -8,6 +8,8 @@
 
 #import "MSBubbleAnimationView.h"
 
+#define kBubbleDestoryDuration 0.3f
+
 typedef enum : NSUInteger {
     MSBubbleViewStateUnknown = 0,   //未知状态
     MSBubbleViewStateWillConnect = 1,   //将要粘连
@@ -52,6 +54,8 @@ typedef enum : NSUInteger {
 @property (nonatomic, assign)CGRect originFrameInself;    //badgeView在self中的初始位置
 
 @property (nonatomic, assign)MSBubbleViewState state;   //bubbleView状态
+
+@property (nonatomic, strong)NSMutableArray* destoryImages;
 
 @end
 
@@ -99,7 +103,6 @@ typedef enum : NSUInteger {
     }
     else if (sender.state == UIGestureRecognizerStateEnded || sender.state == UIGestureRecognizerStateCancelled) {
         BOOL isInSide = CGRectContainsPoint(_originFrameInself, dragPoint);
-        
         if (_state == MSBubbleViewStateSeperated) {
             if (isInSide ) {
                 // 重合，需要复原不隐藏
@@ -107,10 +110,13 @@ typedef enum : NSUInteger {
                 [self restoreAnimationWithBadgeView:badgeView superView:superView animation:NO];
             }
             else {
-                // 未重合，需要复原隐藏
+                // 未重合，需要复原隐藏,并显示消失动画
                 _state = MSBubbleViewStateHidden;
                 badgeView.hidden = YES;
-                [self restoreAnimationWithBadgeView:badgeView superView:superView animation:YES];
+                
+                [self startDestroyAnimationsWithBadgeView:badgeView superView:superView];
+//                [self restoreAnimationWithBadgeView:badgeView superView:superView animation:YES];
+                
             }
         }
         else {
@@ -208,4 +214,47 @@ typedef enum : NSUInteger {
     _circleLayer.path = nil;
     _shapeLayer.path = nil;
 }
+
+/**
+ *  消失动画
+ */
+- (void)startDestroyAnimationsWithBadgeView:(MSBadgeView*)badgeView superView:(UIView*)superView;
+{
+
+    //加载气泡消失gif
+    UIImageView *ainmImageView = [[UIImageView alloc] initWithFrame:badgeView.frame];
+    ainmImageView.animationImages = self.destoryImages;
+    ainmImageView.animationRepeatCount = 1;
+    ainmImageView.animationDuration = kBubbleDestoryDuration;
+    ainmImageView.backgroundColor = [UIColor clearColor];
+    [ainmImageView startAnimating];
+    [self addSubview:ainmImageView];
+
+    //延迟时间与气泡动画时间相同
+    [UIView animateWithDuration:0.3 delay:kBubbleDestoryDuration usingSpringWithDamping:0.3 initialSpringVelocity:2.0f options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowUserInteraction animations:^{
+        badgeView.center = CGPointMake(_x1, _y1);
+    } completion:^(BOOL finished) {
+        [badgeView removeFromSuperview];
+        badgeView.frame = _originFrame;
+        [superView addSubview:badgeView];
+        badgeView.userInteractionEnabled = YES;
+        [self removeFromSuperview];
+    }];
+    
+}
+
+
+#pragma mark -layLoading
+- (NSMutableArray *)destoryImages {
+    if (!_destoryImages) {
+        _destoryImages = [NSMutableArray array];
+        for (int i = 1; i < 9; i++) {
+            UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"%d", i]];
+            [_destoryImages addObject:image];
+        }
+    }
+    return _destoryImages;
+}
+
+
 @end

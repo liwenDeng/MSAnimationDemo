@@ -13,9 +13,7 @@
 @interface MSBubbleView ()
 
 @property (nonatomic, strong)MSBadgeView* badgeView;
-
 @property (nonatomic, strong)MSBubbleAnimationView* animationView;
-
 @property (nonatomic, assign)MSBadgeViewAlignMode alignMode;
 
 @end
