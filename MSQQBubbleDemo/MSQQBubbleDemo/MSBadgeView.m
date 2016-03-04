@@ -7,6 +7,7 @@
 //
 
 #import "MSBadgeView.h"
+#import "UIView+RoundedCorner.h"
 
 @interface MSBadgeView ()
 
@@ -34,9 +35,11 @@
         [_bubbleLabel sizeToFit];
         _diameter = _bubbleLabel.frame.size.height;
 
-        self.layer.backgroundColor = bubbleColor.CGColor;
-        self.layer.cornerRadius = _diameter/2;
-        
+        //设置圆角
+//        self.layer.backgroundColor = bubbleColor.CGColor;
+//        self.layer.cornerRadius = _diameter/2.0;
+        //对圆角进行优化，采用下列方法设置圆角 https://github.com/raozhizhen/JMRoundedCorner
+        [self setJMRadius:(JMRadiusMake(_diameter/2.0, _diameter/2.0, _diameter/2.0, _diameter/2.0)) withBackgroundColor:bubbleColor];
         [self addSubview:_bubbleLabel];
 
     }
@@ -44,7 +47,7 @@
 }
 
 - (instancetype)initWithCustom{
-    return [self initWithBubbleColor:[UIColor redColor] titleColor:[UIColor whiteColor] fontSize:14.0];
+    return [self initWithBubbleColor:[UIColor redColor] titleColor:[UIColor whiteColor] fontSize:18.0];
 }
 
 - (void)setBadge:(NSString *)badge {
@@ -52,7 +55,6 @@
     _badge = [badge copy];
     _bubbleLabel.text = [badge integerValue] > 99 ? @"99+" : badge;
     [_bubbleLabel sizeToFit];
-    
     if ([badge integerValue] > 0) {
         self.hidden = NO;
     }
@@ -66,7 +68,7 @@
     }
     
     self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, width, _diameter);
-    _bubbleLabel.center = self.center;
+    _bubbleLabel.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
 }
 
 /*

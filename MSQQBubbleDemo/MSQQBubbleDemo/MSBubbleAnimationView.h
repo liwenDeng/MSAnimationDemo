@@ -14,6 +14,11 @@
 
 @interface MSBubbleAnimationView : UIView
 
+/**
+ *  分离比率，拖动时圆球半径/初始圆球半径 默认为0.2
+ */
+@property (nonatomic, assign)CGFloat seperateScale;
+
 - (void)animateWithBadgeView:(MSBadgeView*)badgeView gestureRecognizer:(UIPanGestureRecognizer*)sender superView:(UIView*)superView;
 
 @end

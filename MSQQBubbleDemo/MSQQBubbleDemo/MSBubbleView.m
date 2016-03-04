@@ -22,11 +22,9 @@
 
 - (instancetype)initWithFrame:(CGRect)frame bubbleColor:(UIColor*)bubbleColor titleColor:(UIColor*)titileColor fontSize:(CGFloat)fontSize alignMode:(MSBadgeViewAlignMode)alignMode {
     if (self = [super initWithFrame:frame]) {
-        
         _alignMode = alignMode;
         _badgeView = [[MSBadgeView alloc]initWithBubbleColor:bubbleColor titleColor:titileColor fontSize:fontSize];
         [self addSubview:_badgeView];
-
     }
     return self;
 }
@@ -75,8 +73,13 @@
     if (!_animationView) {
         _animationView = [[MSBubbleAnimationView alloc]initWithFrame:kKeyWindow.frame];
         _animationView.backgroundColor = [UIColor clearColor];
+        _animationView.seperateScale = self.seperateScale;
     }
     return _animationView;
+}
+
+- (void)setSeperateScale:(CGFloat)seperateScale {
+    _seperateScale = seperateScale;
 }
 
 @end

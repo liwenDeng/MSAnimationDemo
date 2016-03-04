@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-
 typedef enum : NSUInteger {
     MSBadgeViewAlignLeft = 0,
     MSBadgeViewAlignCenter = 1,
@@ -18,6 +17,10 @@ typedef enum : NSUInteger {
 @interface MSBubbleView : UIView
 
 @property (nonatomic, copy)NSString* badge;
+/**
+ *  分离比率，拖动时圆球半径/初始圆球半径 (0.0 - 1.0) 默认为0.2
+ */
+@property (nonatomic, assign)CGFloat seperateScale;
 
 /**
  *  便利构造器

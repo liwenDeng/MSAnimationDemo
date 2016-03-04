@@ -8,7 +8,14 @@
 
 #import "MSBubbleAnimationView.h"
 
-#define kBubbleDestoryDuration 0.3f
+/**
+ 爆炸动画持续时间
+ */
+static const CGFloat kBubbleDestoryDuration = 0.3f;
+/**
+ 默认分离比率，拖动时圆球半径/初始圆球半径
+ */
+static const CGFloat kDefaultSeperateScale = 0.2f;
 
 typedef enum : NSUInteger {
     MSBubbleViewStateUnknown = 0,   //未知状态
@@ -149,7 +156,7 @@ typedef enum : NSUInteger {
     _r2 = _originFrame.size.height / 2 - _centerDistance / 20;
     
     // 判断分离时的距离
-    if (_r1 <= _originFrame.size.height / 2 * 0.2) {
+    if (_r1 <= _originFrame.size.height / 2 * (self.seperateScale ? self.seperateScale : kDefaultSeperateScale )) {
         [self shouldClearShapeLayer];
         return MSBubbleViewStateSeperated;
     }
@@ -243,7 +250,6 @@ typedef enum : NSUInteger {
     
 }
 
-
 #pragma mark -layLoading
 - (NSMutableArray *)destoryImages {
     if (!_destoryImages) {
@@ -255,6 +261,5 @@ typedef enum : NSUInteger {
     }
     return _destoryImages;
 }
-
 
 @end

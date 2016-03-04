@@ -17,7 +17,8 @@
 		BC0401711C76EBD40086F9EC /* MSQQBubbleDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0401701C76EBD40086F9EC /* MSQQBubbleDemoUITests.m */; };
 		BC0401881C76EE040086F9EC /* MSBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0401871C76EE040086F9EC /* MSBadgeView.m */; };
 		BC65C26A1C7AAFD00089DCC6 /* MSBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC65C2691C7AAFD00089DCC6 /* MSBubbleView.m */; };
-		BC65C26D1C7AB5320089DCC6 /* UIView+ms_ScreenShot.m in Sources */ = {isa = PBXBuildFile; fileRef = BC65C26C1C7AB5320089DCC6 /* UIView+ms_ScreenShot.m */; };
+		BC78CE741C895F89007063FB /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = BC78CE711C895F89007063FB /* UIImage+RoundedCorner.m */; };
+		BC78CE751C895F89007063FB /* UIView+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = BC78CE731C895F89007063FB /* UIView+RoundedCorner.m */; };
 		BC9085361C882D8700ADAEC0 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BC90851F1C882D8700ADAEC0 /* 1.jpg */; };
 		BC9085371C882D8700ADAEC0 /* Contents.json in Resources */ = {isa = PBXBuildFile; fileRef = BC9085201C882D8700ADAEC0 /* Contents.json */; };
 		BC9085381C882D8700ADAEC0 /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BC9085221C882D8700ADAEC0 /* 2.jpg */; };
@@ -75,8 +76,10 @@
 		BC0401871C76EE040086F9EC /* MSBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSBadgeView.m; sourceTree = "<group>"; };
 		BC65C2681C7AAFD00089DCC6 /* MSBubbleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSBubbleView.h; sourceTree = "<group>"; };
 		BC65C2691C7AAFD00089DCC6 /* MSBubbleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSBubbleView.m; sourceTree = "<group>"; };
-		BC65C26B1C7AB5320089DCC6 /* UIView+ms_ScreenShot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ms_ScreenShot.h"; sourceTree = "<group>"; };
-		BC65C26C1C7AB5320089DCC6 /* UIView+ms_ScreenShot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ms_ScreenShot.m"; sourceTree = "<group>"; };
+		BC78CE701C895F89007063FB /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
+		BC78CE711C895F89007063FB /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
+		BC78CE721C895F89007063FB /* UIView+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+RoundedCorner.h"; sourceTree = "<group>"; };
+		BC78CE731C895F89007063FB /* UIView+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+RoundedCorner.m"; sourceTree = "<group>"; };
 		BC90851F1C882D8700ADAEC0 /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
 		BC9085201C882D8700ADAEC0 /* Contents.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Contents.json; sourceTree = "<group>"; };
 		BC9085221C882D8700ADAEC0 /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
@@ -155,8 +158,6 @@
 				BC0401571C76EBD40086F9EC /* Assets.xcassets */,
 				BC04015C1C76EBD40086F9EC /* Info.plist */,
 				BC04014B1C76EBD40086F9EC /* Supporting Files */,
-				BC65C26B1C7AB5320089DCC6 /* UIView+ms_ScreenShot.h */,
-				BC65C26C1C7AB5320089DCC6 /* UIView+ms_ScreenShot.m */,
 			);
 			path = MSQQBubbleDemo;
 			sourceTree = "<group>";
@@ -190,6 +191,7 @@
 		BC0401851C76EDCE0086F9EC /* MSBubbleView */ = {
 			isa = PBXGroup;
 			children = (
+				BC78CE6F1C895F89007063FB /* JMRoundedCorner */,
 				BC90851D1C882D8700ADAEC0 /* 爆炸_gif */,
 				BC65C2681C7AAFD00089DCC6 /* MSBubbleView.h */,
 				BC65C2691C7AAFD00089DCC6 /* MSBubbleView.m */,
@@ -199,6 +201,17 @@
 				BC0401871C76EE040086F9EC /* MSBadgeView.m */,
 			);
 			name = MSBubbleView;
+			sourceTree = "<group>";
+		};
+		BC78CE6F1C895F89007063FB /* JMRoundedCorner */ = {
+			isa = PBXGroup;
+			children = (
+				BC78CE701C895F89007063FB /* UIImage+RoundedCorner.h */,
+				BC78CE711C895F89007063FB /* UIImage+RoundedCorner.m */,
+				BC78CE721C895F89007063FB /* UIView+RoundedCorner.h */,
+				BC78CE731C895F89007063FB /* UIView+RoundedCorner.m */,
+			);
+			path = JMRoundedCorner;
 			sourceTree = "<group>";
 		};
 		BC90851D1C882D8700ADAEC0 /* 爆炸_gif */ = {
@@ -434,12 +447,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC78CE741C895F89007063FB /* UIImage+RoundedCorner.m in Sources */,
 				BC0401881C76EE040086F9EC /* MSBadgeView.m in Sources */,
 				BC0401531C76EBD40086F9EC /* ViewController.m in Sources */,
 				BCF32F451C7D52260026A344 /* MSBubbleAnimationView.m in Sources */,
 				BC0401501C76EBD40086F9EC /* AppDelegate.m in Sources */,
+				BC78CE751C895F89007063FB /* UIView+RoundedCorner.m in Sources */,
 				BC04014D1C76EBD40086F9EC /* main.m in Sources */,
-				BC65C26D1C7AB5320089DCC6 /* UIView+ms_ScreenShot.m in Sources */,
 				BC65C26A1C7AAFD00089DCC6 /* MSBubbleView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
